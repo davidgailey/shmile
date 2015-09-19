@@ -68,12 +68,12 @@ class ImageCompositor
           stripsArgs.push GEOMS[if i == 1 or i == 2 then 1 else 0]
           stripsArgs.push "-composite"
 
-          stripsArgs.push @img_src_list[i]
-          stripsArgs.push "-gravity"
-          stripsArgs.push GRAVITIES[Math.floor (i + 4)/2]
-          stripsArgs.push "-geometry"
-          stripsArgs.push GEOMS[if i == 1 or i == 2 then 1 else 0]
-          stripsArgs.push "-composite"
+          #stripsArgs.push @img_src_list[i]
+          #stripsArgs.push "-gravity"
+          #stripsArgs.push GRAVITIES[Math.floor (i + 4)/2]
+          #stripsArgs.push "-geometry"
+          #stripsArgs.push GEOMS[if i == 1 or i == 2 then 1 else 0]
+          #stripsArgs.push "-composite"
 
         stripsArgs.push @opts.strips_overlay_src
         stripsArgs.push "-gravity"

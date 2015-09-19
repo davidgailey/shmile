@@ -8,7 +8,11 @@ dotenv = require "dotenv"
 exec = require("child_process").exec
 
 dotenv.load()
-console.log("printer is: #{process.env.PRINTER_ENABLED}")
+console.log("printer enabled is: #{process.env.PRINTER_ENABLED}")
+console.log("printer media is: #{process.env.PRINTER_MEDIA}")
+console.log("printer image orientation is: #{process.env.PRINTER_IMAGE_ORIENTATION}")
+console.log("debug mode is: #{process.env.DEBUG_MODE}")
+console.log("stub camera is: #{process.env.STUB_CAMERA}")
 
 PhotoFileUtils = require("./lib/photo_file_utils")
 StubCameraControl = require("./lib/stub_camera_control")
@@ -48,7 +52,7 @@ camera.on "photo_saved", (filename, path, web_url) ->
 
 printfoto = (fotopath) ->
   console.log "Printing image at ", fotopath
-  exec "lpr -o #{process.env.PRINTER_IMAGE_ORIENTATION} -o media=\"#{process.env.PRINTER_MEDIA}\" #{fotopath}"
+  exec "lpr -o #{process.env.PRINTER_IMAGE_ORIENTATION} -o media=\"#{process.env.PRINTER_MEDIA}\" -o fit-to-page #{fotopath}"
 
 io = require("socket.io").listen(web)
 web.listen 3000
