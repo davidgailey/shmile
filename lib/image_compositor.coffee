@@ -3,9 +3,9 @@ exec = require("child_process").exec
 fs = require("fs")
 EventEmitter = require("events").EventEmitter
 
-IMAGE_HEIGHT = 800
-IMAGE_WIDTH = 1200
-IMAGE_PADDING = 50
+IMAGE_HEIGHT = 400
+IMAGE_WIDTH = 600
+IMAGE_PADDING = 25
 TOTAL_HEIGHT = IMAGE_HEIGHT * 2 + IMAGE_PADDING * 3
 TOTAL_WIDTH = IMAGE_WIDTH * 2 + IMAGE_PADDING * 3
 
@@ -54,11 +54,11 @@ class ImageCompositor
       )
 
       doStrips = =>
-        stripsArgs = [ "-size", "1200x1800", "canvas:white" ]
-        STRIP_SINGLE_WIDTH = 580
-        STRIP_SINGLE_HEIGHT = 387
+        stripsArgs = [ "-size", "225x630", "canvas:white" ]
+        STRIP_SINGLE_WIDTH = 200
+        STRIP_SINGLE_HEIGHT = 130
         GRAVITIES = ["NorthWest", "SouthWest", "NorthEast", "SouthEast"]
-        GEOMS = [STRIP_SINGLE_WIDTH + "x+0+0", STRIP_SINGLE_WIDTH + "x+0+" + (STRIP_SINGLE_HEIGHT + 50)]
+        GEOMS = [STRIP_SINGLE_WIDTH + "x+12+12", STRIP_SINGLE_WIDTH + "x+12+" + (STRIP_SINGLE_HEIGHT + 20)]
 
         for i in [0..@img_src_list.length-1] by 1
           stripsArgs.push @img_src_list[i]
@@ -79,8 +79,8 @@ class ImageCompositor
         stripsArgs.push "-gravity"
         stripsArgs.push "Center"
         stripsArgs.push "-composite"
-        stripsArgs.push "-rotate"
-        stripsArgs.push "90"
+        # stripsArgs.push "-rotate"
+        # stripsArgs.push "90"
         stripsArgs.push FINAL_OUTPUT_STRIPS_PATH
 
         console.log("executing: convert #{stripsArgs.join(" ")}")
