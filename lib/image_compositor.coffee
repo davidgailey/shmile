@@ -3,9 +3,9 @@ exec = require("child_process").exec
 fs = require("fs")
 EventEmitter = require("events").EventEmitter
 
-IMAGE_HEIGHT = 400
-IMAGE_WIDTH = 600
-IMAGE_PADDING = 25
+IMAGE_HEIGHT = 800
+IMAGE_WIDTH = 1200
+IMAGE_PADDING = 50
 TOTAL_HEIGHT = IMAGE_HEIGHT * 2 + IMAGE_PADDING * 3
 TOTAL_WIDTH = IMAGE_WIDTH * 2 + IMAGE_PADDING * 3
 
@@ -37,6 +37,8 @@ class ImageCompositor
 
       for i in [0..@img_src_list.length-1] by 1
         convertArgs.push @img_src_list[i]
+        convertArgs.push "-density"
+        convertArgs.push "300x300"
         convertArgs.push "-geometry"
         convertArgs.push GEOMETRIES[i]
         convertArgs.push "-composite"
