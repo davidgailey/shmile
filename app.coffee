@@ -52,6 +52,7 @@ camera.on "photo_saved", (filename, path, web_url) ->
 
 printfoto = (fotopath) ->
   console.log "Printing image at ", fotopath
+  console.log "lpr -o #{process.env.PRINTER_IMAGE_ORIENTATION} -o media=\"#{process.env.PRINTER_MEDIA}\" #{fotopath}"
   exec "lpr -o #{process.env.PRINTER_IMAGE_ORIENTATION} -o media=\"#{process.env.PRINTER_MEDIA}\" #{fotopath}"
 
 io = require("socket.io").listen(web)
